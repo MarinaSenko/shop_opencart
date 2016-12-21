@@ -161,7 +161,7 @@
 </nav>
 </header>
 
-<a href="#" id="popup_toggle" onclick="return false;">
+<a href="#" id="popup_toggle" class="callback">
     <div class="circlephone" style="transform-origin: center;"></div>
     <div class="circle-fill" style="transform-origin: center;"></div>
     <div class="img-circle" style="transform-origin: center;">
@@ -170,7 +170,173 @@
 <div class="wrap"></div>
 </div>
 
+
+<div id="modal_form">
+	  <h2>Заказать звонок!</h2>
+	  <div class="comment">Оставьте Ваши данные и мы перезвоним Вам!</div>
+      <a class="exit"></a>
+	  <form method="post">
+        <input type="text" placeholder="Как вас зовут?" name="name-zv" id="name" class="input_text">
+        <input type="text" placeholder="Контактный телефон *" name="phone-zv" id="phone-zv" class="phone-zv">
+		<div class="comment">Поля отмеченные <span class="required">*</span> обязательны для заполнения</div>
+        <input class="button" type="submit" value="Перезвоните мне">
+    </form>
+</div>
+
+<div id="overlay"></div>
+
+
+<script>
+
+
+  $(function() {
+  	$('.callback').click( function(event){
+  		event.preventDefault();
+  		$('#overlay').fadeIn(400,
+  		 	function(){
+  				$('#modal_form')
+  					.css('display', 'block')
+  					.animate({opacity: 1, top: '50%'}, 200);
+  		});
+  	});
+
+  	$('.exit, #overlay').click( function(){
+  		$('#modal_form')
+  			.animate({opacity: 0, top: '45%'}, 200,
+  				function(){
+  					$(this).css('display', 'none');
+  					$('#overlay').fadeOut(400);
+  				}
+  			);
+  	});
+  });
+
+
+</script>
+
+
 <style>
+
+
+  #modal_form {
+  	width: 350px;
+  	height: 300px;
+  	border-radius: 5px;
+  	background: #fff;
+  	position: fixed;
+  	top: 45%;
+  	left: 50%;
+  	margin-top: -135px;
+  	margin-left: -175px;
+  	display: none;
+  	opacity: 0;
+  	z-index: 5;
+  	padding: 20px 10px;
+  }
+
+  #overlay {
+  	z-index:3;
+  	position:fixed;
+  	background-color:#000;
+  	opacity:0.8;
+  	-moz-opacity:0.8;
+  	filter:alpha(opacity=80);
+  	width:100%;
+  	height:100%;
+  	top:0;
+  	left:0;
+  	cursor:pointer;
+  	display:none;
+  }
+
+  #modal_form input[type="text"] {
+      background-color: #fff;
+      border: 1px solid #c0c0c0;
+      border-radius: 1px;
+      color: #555;
+      display: block;
+      font-size: 1em;
+      height: 30px;
+      padding: 5px;
+      margin-bottom: 17px;
+      width: 95%;
+      float: left;
+  }
+
+  #modal_form  h2{
+  	text-align: center;
+  }
+  #modal_form .comment {
+      color: #797979;
+      padding-bottom: 15px;
+      font-size: 12px;
+  }
+
+  .exit {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 28px;
+      height: 28px;
+      text-decoration: none;
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
+      border: 2px solid #3e5368;
+      -webkit-transition: background 0.2s linear;
+      -moz-transition: background 0.2s linear;
+      -o-transition: background 0.2s linear;
+      transition: background 0.2s linear;
+
+  }
+  .exit:after{
+      display: block;
+      font-size: 28px;
+      content: "x";
+  	padding-left: 7px;
+      line-height: 26px;
+      cursor: pointer;
+      text-decoration: none;
+      color: #3e5368;
+      -webkit-transition: all 0.2s linear;
+      -moz-transition: all 0.2s linear;
+      -o-transition: all 0.2s linear;
+      transition: all 0.2s linear;
+  }
+  .exit:hover {
+      background: #DCDCDC;
+  }
+
+  #modal_form .button {
+  	display: block;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      color: #555;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      height: 34px;
+      margin: 10px 0;
+      padding: 2px 16px;
+      width: 185px;
+  	margin: 0 auto;
+  }
+  #modal_form .button:hover {
+      background-color: #4683ea;
+      border: 1px solid #4387fd;
+      color: #fff;
+  }
+
+
+
+
+
+
+
+
+
+
+
 
     #popup_toggle{bottom:25px;right:10px;position:fixed; z-index:99999999;}
     .img-circle{background-color:#29AEE3;box-sizing:content-box;-webkit-box-sizing:content-box;}

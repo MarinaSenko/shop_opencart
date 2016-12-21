@@ -53,7 +53,6 @@
           <div class="col-sm-12">
             <div class="btn-group pull-right">
               <a class="btn btn-default" href="<?php echo $cart; ?>"><?php echo $text_cart; ?></a>
-              <a class="btn btn-primary" href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a>
             </div>
           </div>
           <br />
